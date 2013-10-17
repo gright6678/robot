@@ -89,10 +89,10 @@ void store::StoreInventory() {
 			
 		}
 		
-		/*cout << "1. Shield - $30" << endl;
+		cout << "1. Shield - $30" << endl;
 		cout << "2. Double Handed Sword - $30" << endl;
 		cout << "3. First Aid Kit - $10" << endl;
-		cout << "4. Leave" << endl;*/
+		cout << "4. Leave" << endl;
 		cin >> intSelectedItem;
 		
 		switch (intSelectedItem) {
@@ -169,4 +169,20 @@ void store::AddInventory(string newItem) {
 
 	StoreVector.push_back(newItem);
 
+}
+
+int store::getAttack() {
+	return intPlayerAttack;
+}
+
+int store::getArmor() {
+	return intPlayerArmor;
+}
+
+int store::getMoney() {
+	return intPlayerMoney;
+}
+
+int store::getHP() {
+	return intPlayerHP;
 }

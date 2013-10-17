@@ -19,10 +19,10 @@ void adventure::StoreVisit() {
 	storeObj.clerk();
 	
 	//receive all variables from adventure class
-	intPlayerAttack= storeObj.intPlayerAttack;
-	intPlayerArmor= storeObj.intPlayerArmor;
-	intPlayerMoney= storeObj.intPlayerMoney;
-	intPlayerHP= storeObj.intPlayerHP;
+	intPlayerAttack= storeObj.getAttack();
+	intPlayerArmor= storeObj.getArmor();
+	intPlayerMoney= storeObj.getMoney();
+	intPlayerHP= storeObj.getHP();
 	
 }
 
@@ -75,12 +75,12 @@ void adventure::battle() {
 		
 		WeakRobot.Fighter(intPlayerAttack, intPlayerArmor, intPlayerHP);
 		
-		intPlayerHP = WeakRobot.intPlayerHP;
+		intPlayerHP = WeakRobot.getHP();
 		
 		if (intPlayerHP <= 0) {
 			
 			system ("clear");
-			//cout << ":::::GAME OVER:::::" << endl;
+			cout << ":::::GAME OVER:::::" << endl << endl;
 
 		} else {
 		
@@ -98,12 +98,12 @@ void adventure::battle() {
 		
 		LargeRobot.Fighter(intPlayerAttack, intPlayerArmor, intPlayerHP);
 		
-		intPlayerHP = LargeRobot.intPlayerHP;
+		intPlayerHP = LargeRobot.getHP();
 		
 		if (intPlayerHP <= 0) {
 			
 			system ("clear");
-			//cout << ":::::GAME OVER:::::" << endl << endl;
+			cout << ":::::GAME OVER:::::" << endl << endl;
 
 		} else {
 			
@@ -120,12 +120,12 @@ void adventure::battle() {
 		
 		StrongRobot.Fighter(intPlayerAttack, intPlayerArmor, intPlayerHP);
 		
-		intPlayerHP = StrongRobot.intPlayerHP;
+		intPlayerHP = StrongRobot.getHP();
 		
 		if (intPlayerHP <= 0) {
 			
 			system ("clear");
-			//cout << ":::::GAME OVER:::::" << endl;
+			cout << ":::::GAME OVER:::::" << endl;
 
 		} else {
 			
@@ -141,4 +141,20 @@ void adventure::lost() {
 	cout << "You are travelling through the abandoned city and you are lost" << endl;
 		cout << "You find your way out" << endl;
 		
+}
+
+int adventure::getAttack() {
+	return intPlayerAttack;
+}
+
+int adventure::getArmor() {
+	return intPlayerArmor;
+}
+
+int adventure::getMoney() {
+	return intPlayerMoney;
+}
+
+int adventure::getHP() {
+	return intPlayerHP;
 }

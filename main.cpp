@@ -9,13 +9,14 @@ using namespace std;
 
 void stats(), menu(), MoveOn();
 
-int intPlayerAttack, intPlayerArmor, intPlayerHP, intPlayerMoney, intTurn, SaveID;
+int intPlayerAttack, intPlayerArmor, intPlayerHP, intPlayerMoney, intTurn;
+
 bool ChangeSaveID;
 
 int main() {
 	
 	char CreateLoad;
-	int UserSaveID, fileintPlayerAttack, fileintPlayerArmor, fileintPlayerHP, fileintPlayerMoney, fileintTurn, fileSaveID;;
+	int UserSaveID, fileintPlayerAttack, fileintPlayerArmor, fileintPlayerHP, fileintPlayerMoney, fileintTurn, fileSaveID, SaveID;
 
 	//initial prompt. ask whether to create a new game or load a saved game from file
 	system ("clear");
@@ -28,6 +29,7 @@ int main() {
 		
 		if (CreateLoad == 'c' || CreateLoad == 'C') {
 			
+			//Set the initial player values and start the game
 			intPlayerAttack = 0;
 			intPlayerArmor = 0;
 			intPlayerHP = 100;
@@ -41,6 +43,8 @@ int main() {
 			system ("clear");
 			
 		} else if (CreateLoad == 'l' || CreateLoad == 'L') {
+			
+			int SaveID;
 			
 			ifstream LoadGame("SavedGame");
 		
@@ -93,17 +97,17 @@ void MoveOn() {
 	getgoing.begin();
 	
 	//get the new variables from the adventure class
-	intPlayerAttack= getgoing.intPlayerAttack;
-	intPlayerArmor= getgoing.intPlayerArmor;
-	intPlayerMoney= getgoing.intPlayerMoney;
-	intPlayerHP= getgoing.intPlayerHP;
-	intTurn= getgoing.intTurn;
+	intPlayerAttack= getgoing.getAttack();
+	intPlayerArmor= getgoing.getArmor();
+	intPlayerMoney= getgoing.getMoney();
+	intPlayerHP= getgoing.getHP();
 	
 }
 
+//Menu presented to the player after each turn
 void menu() {
-
-		int a, b, c, d, e, f, PastSaveID, Option;
+		
+		int a, b, c, d, e, f, PastSaveID, SaveID, Option;
 		char Save;
 		bool Quit;
 
@@ -148,13 +152,8 @@ void menu() {
 				
 			}
 		
-		} while (Quit == false && intPlayerHP > 0); //keep showing the menu as long as the player has HP left and has not told the program to quit
-		
-		
-	if (intPlayerHP <= 0) { //show this when the player has no HP left
-		system ("clear");
-		cout << ":::::GAME OVER:::::" << endl << endl;
-	}
+		//keep showing the menu as long as the player has HP left and has not told the program to quit
+		} while (Quit == false && intPlayerHP > 0);
 
 		//prompt the user to save the game
 		cout << "Would you like to save your game?(y/n)" << endl;
@@ -184,8 +183,9 @@ void menu() {
 							<< intTurn << "\n";
 							
 				SaveGame.close();
-
-			} else { //if game was loaded then replace the old saved game with the new saved game
+				
+			//if game was loaded then replace the old saved game with the new saved game
+			} else {
 					
 					ofstream SaveGame("SavedGame", ios::app);
 					ofstream oldSaveGame("SavedGame");
@@ -218,18 +218,19 @@ void menu() {
 				
 			}
 
-			
 		}
 	
 	system ("clear");
 }
 
+//Show player statistics
 void stats() {
 	
 	cout << "Attack: " << intPlayerAttack<< endl;
 	cout << "Armor: " << intPlayerArmor<< endl;
 	cout << "HP: " << intPlayerHP<< endl;
 	cout << "Money: " << intPlayerMoney<< endl;
+	cout << "Turn: " << intTurn<< endl;
 	cout << "\n";
 	
 }

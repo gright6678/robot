@@ -19,8 +19,6 @@ void robot::Fighter(int a, int b, int c) {
 	intPlayerHP = c;
 
 	while (intRobotHP > 0 && intPlayerHP > 0) {
-
-		int AttackRun;
 		
 		try {
 				
@@ -28,7 +26,6 @@ void robot::Fighter(int a, int b, int c) {
 				cout << "1. Attack" << endl;
 				cout << "2. Run" << endl;
 				cin >> AttackRun;
-			
 			
 				switch (AttackRun) {
 					
@@ -39,8 +36,8 @@ void robot::Fighter(int a, int b, int c) {
 						cout << "You strike the robots" << endl << endl;
 						
 						//calculate how much damage the player takes along with the robot
-						intRobotHP = WinLose(intPlayerAttack, intPlayerArmor, intRobotAttack, intRobotArmor, intRobotHP);
-					
+						WinLose(intPlayerAttack, intPlayerArmor, intRobotAttack, intRobotArmor);
+						
 						break; }
 					
 					//run
@@ -80,7 +77,7 @@ void robot::Fighter(int a, int b, int c) {
 
 }
 
-int robot::WinLose(int intPlayerAttack, int intPlayerArmor, int intRobotAttack, int intRobotArmor, int intRobotHP) {
+void robot::WinLose(int intPlayerAttack, int intPlayerArmor, int intRobotAttack, int intRobotArmor) {
 
 	
 	if (intRobotArmor >= intPlayerAttack) {
@@ -94,7 +91,9 @@ int robot::WinLose(int intPlayerAttack, int intPlayerArmor, int intRobotAttack, 
 	} else if (intPlayerArmor < intRobotAttack) {
 		intPlayerHP -= (intRobotAttack - intPlayerArmor);
 	}
-
-	return intRobotHP;
 	
+}
+
+int robot::getHP() {
+	return intPlayerHP;
 }

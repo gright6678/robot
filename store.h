@@ -12,12 +12,15 @@ class store {
 public:
 	store(int, int, int, int);
 	void clerk();
-	int intPlayerAttack, intPlayerArmor, intPlayerHP, intPlayerMoney, intInventoryNumber;
+	int getAttack();
+	int getArmor();
+	int getMoney();
+	int getHP();
 
 protected:
 
 private:
-
+	int intPlayerAttack, intPlayerArmor, intPlayerHP, intPlayerMoney, intInventoryNumber;
 	void AddInventory(string);
 	void StoreInventory();
 	bool Leave;
